@@ -270,15 +270,17 @@ function MSAComparison() {
           display: "flex", 
           justifyContent: "space-between", 
           alignItems: "center",
-          color: theme.palette.mode === "dark" ? colors.grey[100] : colors.grey[900],
+          color: theme.palette.mode === "dark" ? "#ffffff" : "#000000",
           pb: 1
         }}>
-          <Typography variant="h4" fontWeight="bold">
+          <Typography variant="h4" fontWeight="bold" sx={{ 
+            color: theme.palette.mode === "dark" ? "#ffffff" : "#000000" 
+          }}>
             {openModal === 'value' ? 'Total Market Value by Brand' : 'Total Volume by Brand'}
           </Typography>
           <IconButton 
             onClick={() => setOpenModal(null)}
-            sx={{ color: theme.palette.mode === "dark" ? colors.grey[100] : colors.grey[900] }}
+            sx={{ color: theme.palette.mode === "dark" ? "#ffffff" : "#000000" }}
           >
             <CloseIcon />
           </IconButton>
