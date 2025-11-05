@@ -283,13 +283,16 @@ export function VaccinationRate({ onNavigate }: VaccinationRateProps) {
     
     selectedDiseases.forEach((disease) => {
       const diseaseData = vaccinationTrendsDataByDisease[disease] || []
-      result[disease] = diseaseData.map((entry) => ({
-        year: entry.year as number | string,
-        vaccinationRate: entry[`${country}_vaccinationRate`] as number || 0,
-        coverageRate: entry[`${country}_coverageRate`] as number || 0,
-        vaccinationRate_yoy: entry[`${country}_vaccinationRate_yoy`] as number || null,
-        coverageRate_yoy: entry[`${country}_coverageRate_yoy`] as number || null,
-      }))
+      result[disease] = diseaseData.map((entry) => {
+        const year = entry.year ?? ''
+        return {
+          year: typeof year === 'number' || typeof year === 'string' ? year : String(year),
+          vaccinationRate: entry[`${country}_vaccinationRate`] as number || 0,
+          coverageRate: entry[`${country}_coverageRate`] as number || 0,
+          vaccinationRate_yoy: entry[`${country}_vaccinationRate_yoy`] as number || null,
+          coverageRate_yoy: entry[`${country}_coverageRate_yoy`] as number || null,
+        }
+      })
     })
     
     return result
